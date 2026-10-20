@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 헷반</title>
+
+    <style>
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            font-size: 20pt;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5em;
+        }
+
+        h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 1em;
+        }
+.navBox {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 25px;
+
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.nav-column {
+    display: flex;
+    flex: 0 1 300px;
+    flex-direction: column;
+    gap: 25px;
+    min-width: 0;
+}
+
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    margin: 0;
+    padding: 15px 25px;
+
+    border: 1px solid #555;
+    border-radius: 20px;
+}
+        .nav-btn {
+            width: 200px;
+            max-width: 100%;
+            text-align: center;
+            padding: 10px 16px;
+            background: #2d2d2d;
+            color: #d4d4d4;
+            border: 1px solid #444;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.8em;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: #007acc;
+            color: #fff;
+            border-color: #007acc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>2026년 6학년 헷-반</h1>
+
+    <div class="navBox">
+
+        <div class="nav-bar">
+            <h2>클래스보드</h2>
+            <a href="https://www.clboard.co.kr/student/182381" class="nav-btn">클래스보드</a>
+        </div>
+
+        <div class="nav-bar">
+            <h2>타자</h2>
+            <a href="https://kimgreentea.github.io/kimnokcha/silgwa/typing/ganada" class="nav-btn">타자연습</a>
+        </div>
+
+        <div class="nav-bar">
+            <h2>국어</h2>
+            <a href="https://kimgreentea.github.io/kimnokcha/korean/6-1-1-102" class="nav-btn">소나기 감상</a>
+            <a href="https://kimgreentea.github.io/kimnokcha/oncheck/nogoodbike/nogoodbike" class="nav-btn"><hi style="font-size:.9em;">불량한 자전거 여행</hi></a>
+        </div>
+
+        <div class="nav-bar">
+            <h2>수학</h2>
+            <a href="https://kimgreentea.github.io/kimnokcha/math/6-2-3" class="nav-btn">소수의 나눗셈</a>
+            <a href="https://kimgreentea.github.io/kimnokcha/math/gugudan" class="nav-btn">구구단 연습</a>
+        </div>
+
+        <div class="nav-bar">
+            <h2>실과</h2>
+            <a href="https://kimgreentea.github.io/kimnokcha/silgwa/python/drill" class="nav-btn">파이썬 실습실</a>
+            <a href="https://kimgreentea.github.io/kimnokcha/silgwa/machinelearning/robot" class="nav-btn">블록코딩 로봇</a>
+        </div>
+
+        <div class="nav-bar">
+            <h2>사회</h2>
+            <a href="https://kimgreentea.github.io/kimnokcha/society/6-1-1" class="nav-btn">민주주의 퀴즈</a>
+        </div>
+
+<!--
+        <div class="nav-bar">
+
+            <h2>?</h2>
+                   
+          
+                    
+            <a href="https://kimgreentea.github.io/kimnokcha/board/streams/list" class="nav-btn">개인판</a>
+         
+
+
+        </div>
+ -->
+
+    </div>
+<script>
+    const navBox = document.querySelector('.navBox');
+    const cards = [...navBox.querySelectorAll('.nav-bar')];
+
+    function arrangeCards() {
+        const availableWidth = Math.min(
+            navBox.parentElement.clientWidth,
+            1500
+        );
+
+        const columnCount = Math.max(
+            1,
+            Math.floor((availableWidth + 25) / 325)
+        );
+
+        const columns = Array.from(
+            { length: columnCount },
+            () => {
+                const column = document.createElement('div');
+                column.className = 'nav-column';
+                return column;
+            }
+        );
+
+        cards.forEach((card, index) => {
+            columns[index % columnCount].appendChild(card);
+        });
+
+        navBox.replaceChildren(...columns);
+    }
+
+    arrangeCards();
+
+    window.addEventListener('resize', arrangeCards);
+</script>
+</body>
+
+</html>
